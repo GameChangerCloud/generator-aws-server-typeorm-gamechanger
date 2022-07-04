@@ -1,0 +1,4 @@
+<%_if(type.fields.filter(field => field.type === "ID").length > 0) { %>
+    @PrimaryColumn<%_} else {%>
+    @PrimaryGeneratedColumn()<%_}%>
+    id: number

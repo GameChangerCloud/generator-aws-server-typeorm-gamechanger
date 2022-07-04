@@ -1,0 +1,58 @@
+type Tweet {
+    id: ID!
+    # The tweet text. No more than 140 characters!
+    body: String
+    # When the tweet was published
+    date: DateTime!
+    # Who published the tweet
+    author: User
+    # Views, retweets, likes, etc
+    stats: Stat
+}
+
+scalar DateTime
+
+
+type User @auth(requires: USER) {
+    id: ID!
+    username: String @length(min : 4, max : 35) @format(formatType : "UTF-8")
+    firstname: String
+    lastname: String
+    fullname: String
+    age : Int @valueReducer(reduceby : 10)
+    name: String @deprecated
+}
+
+type Stat {
+    id: ID!
+    views: Int @valueReducer(reduceby : 10)
+    likes: Int
+    retweets: Int
+    responses: Int
+}
+
+type Notification {
+    id: ID!
+    type: String
+}
+
+type Meta {
+    id: ID!
+    count: Int
+}
+
+
+type Query {
+    Tweet(id: ID!): Tweet
+    Tweets(limit: Int, skip: Int, sort_field: String, sort_order: String): [Tweet]
+    TweetsMeta: Meta
+    User(id: ID!): User
+    Notifications(limit: Int): [Notification]
+    NotificationsMeta: Meta
+}
+
+type Mutation {
+    Tweet(id: ID!): Tweet
+    ucreate(username : String! , firstname: String!) : User!
+    uagecreate(age : Int!) : User!
+}

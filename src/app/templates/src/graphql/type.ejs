@@ -1,0 +1,19 @@
+import {
+	GraphQLObjectType,
+} from 'graphql'
+
+<%_type.relationList.forEach(relation => { %>import { <%= relation.type %> } from './<%=relation.type.toLowerCase() %>'
+<%_})%>
+
+module.exports = new <%-graphqlType%>({
+	name: '<%=type.typeName%>Type',
+	<% if(interfaces){%>interfaces : [<%-interfaces%>],
+	<%}%>description: '',
+	fields: () => ({
+
+  })
+
+})
+
+
+

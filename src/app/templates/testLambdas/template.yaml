@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lamda local demo
+
+Resources:
+  LambdaDemoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: # le format est projectPath/
+      Handler: index.handler # le format est filename.functionName
+      Runtime: nodejs14.x
+      Timeout: 120 # par defaut 3s
+      Policies: AWSLambdaDynamoDBExecutionRole
+      Environment: #Variables d'environement necessaires aux lambdas
+        Variables:
+          DATABASE: "<%= appName%>_db"
+          RESOURCEARN: "${arn}"
+          SECRETARN: "${secretArn}"

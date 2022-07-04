@@ -1,0 +1,43 @@
+scalar RGBA
+
+type Movie {
+  id: ID
+  title: String 
+  poster: String
+  actors: [Actor] @hasInverse(field: movies)
+  studio: Studio!
+  oscars: [Oscar]
+  sequel: Movie
+  synopsis: Synopsis!
+}
+
+type Actor {
+  id: ID
+  name: String
+  movies: [Movie] @hasInverse(field: actors)
+  likes: [Movie]
+  hates : [Movie]
+  children : [Actor]
+}
+
+type Oscar {
+  id: ID
+  category: String
+}
+
+type Studio {
+  id: ID
+  name: String!
+  location: [City!]!
+}
+
+type Synopsis {
+	id: ID
+  text: String!
+  bgcolor: RGBA
+}
+
+type City {
+  id: ID
+  name: String!
+}

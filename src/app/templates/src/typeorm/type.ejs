@@ -1,0 +1,14 @@
+import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable } from "typeorm"
+<%- include('./partials/import', {type: type}); %>
+
+@Entity()
+export class <%= type.typeName %> {
+  <%- include('./partials/id', {type: type}); %>
+
+  <%_type.fields.forEach(field => {_%><%- include('./partials/std-scalars', {field: field}); %><%_});%>
+  <%_type.fields.filter(field => field.relationType === 'oneToOne' || field.relationType === 'oneOnly').forEach(field => {_%><%- include('./partials/oneToOne', {field: field}); %><%_});%>
+  <%_type.fields.filter(field => field.relationType === 'manyToMany' || field.relationType === 'manyOnly').forEach(field => {_%><%- include('./partials/manyToMany', {field: field}); %><%_});%>
+  <%# easygraph-parser reverse the direction of manyToOne and OneToMany compared to TypeORM %>
+  <%_type.fields.filter(field => field.relationType === 'manyToOne').forEach(field => {_%><%- include('./partials/oneToMany', {field: field}); %><%_});%>
+  <%_type.fields.filter(field => field.relationType === 'oneToMany').forEach(field => {_%><%- include('./partials/manyToOne', {field: field}); %><%_});%>
+}

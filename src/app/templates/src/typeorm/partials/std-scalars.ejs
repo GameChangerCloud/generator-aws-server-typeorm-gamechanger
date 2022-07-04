@@ -1,0 +1,16 @@
+<%_switch(field.type) {
+        case "String":_%>
+    @Column()
+    <%=field.name _%>: string
+          <%_break
+        case "Int":_%> 
+    @Column()
+    <%=field.name _%>: number
+          <%_break
+        case "Boolean":_%>
+    @Column()
+    <%=field.name _%>: boolean
+          <%_break
+          // Not classic scalar type
+        default:
+      }_%>

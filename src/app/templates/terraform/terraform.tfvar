@@ -1,0 +1,12 @@
+db_username = "postgres"
+db_password = "postgres"
+cluster_db = "aurora-<%-appName%>"
+db_name = "<%-appName%>_db"
+rds_name ="<%-appName%>-db"
+api_name = "<%-appName%>_api"
+policy_name = "<%-appName%>_policy"
+role_name = "<%-appName%>_role"
+lambda_name = "<%-appName%>_lambda"
+secret_name = "<%-appName%>-secret"
+
+

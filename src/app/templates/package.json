@@ -1,0 +1,14 @@
+{
+  "name": "<%=appName%>",
+  "version": "<%=appVersion%>",
+  "description": "<%=appDescription%>",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w",
+    "testorm": "tsc && node dist/typeorm/test.js",
+    "start": "tsc && node src/index.js",
+    "typeorm": "./node_modules/.bin/typeorm"
+  },
+  "author": "<%=appAuthor%>",
+  "license": "ISC"
+}

@@ -1,0 +1,22 @@
+<%_types.filter(type => type.type === 'ObjectTypeDefinition').forEach(type => {%>import { <%= type.typeName %> } from "./entities/<%= type.typeName %>"
+<%_ }) %>
+import { AppDataSource } from "./datasource"
+
+AppDataSource.initialize()
+  .then(async () => {
+    // Put some test code here
+    /*
+    const profile1 = new Profile()
+    profile1.photo = "TypeScript"
+    await AppDataSource.manager.save(profile1)
+
+    const user = new User()
+    user.name = "sdg"
+    user.profile = profile1
+
+    await AppDataSource.manager.save(user)
+    
+    console.log("User has been saved: ", user)
+    */
+  })
+  .catch((error) => console.log("Error: ", error))

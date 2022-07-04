@@ -1,0 +1,25 @@
+<%if(typeQuery === "create"){_%>
+{
+    "query" : "mutation {<%-typeName.toLowerCase()%>Create(<% for (field in fields){_%> <%-fields[field].name%> :  , <%}_%>){<% for (field in fields){%> <%if(fields[field].type !== "String" && fields[field].type !== "ID" && fields[field].type !== "Int" && fields[field].type != "Boolean" ){%> <%-fields[field].name%>{id}, <%}else{%><%-fields[field].name%>, <%}}%>}}"
+}
+<%}else if(typeQuery === "delete"){%>
+{
+    "query" : "mutation {<%-typeName.toLowerCase()%>Delete(id :)}"
+}
+<%}else if(typeQuery === "initTable"){%>
+    {
+        "initTable" : "initializes the tables"
+    }
+<%}else if(typeQuery === "fillTable"){%>
+    {
+        "fillTable" : "fill the tables with data"
+    }
+<%}else if(typeQuery === "dropTables"){%>
+    {
+        "dropTables" : "drop all the tables"
+    }
+<%}else{%>
+{
+    "query" : "mutation {<%-typeName.toLowerCase()%>Update(<% for (field in fields){_%> <%-fields[field].name%> :  , <%}_%>){<% for (field in fields){%> <%if(fields[field].type !== "String" && fields[field].type !== "ID" && fields[field].type !== "Int" && fields[field].type != "Boolean" ){%> <%-fields[field].name%>{id}, <%}else{%><%-fields[field].name%>, <%}}%>}}"
+}
+<%}_%>

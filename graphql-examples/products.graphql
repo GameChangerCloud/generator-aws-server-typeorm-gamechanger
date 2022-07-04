@@ -1,0 +1,19 @@
+type Product {
+    id: ID!
+    name: String 
+    reviews: [Review] @hasInverse(field: about)
+}
+
+type Customer {
+  	id: ID!
+    username: String! 
+    reviews: [Review] @hasInverse(field: by)
+}
+
+type Review {
+    id: ID!
+    about: Product!
+    by: Customer!
+    comment: String 
+    rating: Int @search
+}
