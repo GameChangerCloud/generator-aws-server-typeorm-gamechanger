@@ -1,0 +1,5 @@
+node_modules
+movies-dir
+package-lock.json
+generators
+schema.json

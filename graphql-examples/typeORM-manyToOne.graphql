@@ -38,7 +38,7 @@ export class User {
 
 type Photo {
     url: String
-    user: User
+    user: User @hasInverse(field: photos)
 }
 
 type User {
